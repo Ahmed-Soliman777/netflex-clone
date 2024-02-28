@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 export default function Home() {
   return (
     <>
-      {/* <h1 className="text-slate-200">Home Page</h1> */}
-      <Button variant="outline">Button</Button>
+      <h1 className="">Home Page</h1>
+      <Button>Button</Button>
     </>
   );
 }
