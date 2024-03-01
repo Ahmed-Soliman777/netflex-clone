@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Heart, PlayCircle } from "lucide-react";
 import PlayVideoModel from "./PlayVideoModel";
 import { useState } from "react";
+import { addTowatchlist, deleteFromwatchlist } from "../action";
+import { usePathname } from "next/navigation";
 
 interface iAppProps {
   title: string;
@@ -29,6 +31,7 @@ export function MovieCart({
   year,
 }: iAppProps) {
   const [open, setOpen] = useState(false);
+  const pathName = usePathname()
   return (
     <>
       <button onClick={() => setOpen(true)} className="">
@@ -36,13 +39,17 @@ export function MovieCart({
       </button>
       <div className="right-5 top-5 absolute z-10">
         {watchList ? (
-          <form action="">
+          <form action={deleteFromwatchlist}>
+            <input type="hidden" name="watchlistId" value={watchListId} />
+            <input type="hidden" name="pathname" value={pathName} />
             <Button variant={"outline"} size={"icon"}>
               <Heart className="w-4 h-4 text-red-500" />
             </Button>
           </form>
         ) : (
-          <form action="">
+          <form action={addTowatchlist}>
+            <input type="hidden" name="movieId" value={movieId} />
+            <input type="hidden" name="pathname" value={pathName} />
             <Button variant={"outline"} size={"icon"}>
               <Heart className="w-4 h-4" />
             </Button>
